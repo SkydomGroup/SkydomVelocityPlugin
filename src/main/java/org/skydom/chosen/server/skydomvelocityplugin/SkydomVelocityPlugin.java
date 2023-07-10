@@ -29,6 +29,7 @@ public class SkydomVelocityPlugin {
 
         logger.info("加载插件中...");
         this.dataDirectory = dataDirectory;
+        logger.info("插件加载完毕！");
     }
 
     @Subscribe
