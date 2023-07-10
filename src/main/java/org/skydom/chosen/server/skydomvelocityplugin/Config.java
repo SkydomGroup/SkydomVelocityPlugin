@@ -67,7 +67,7 @@ public class Config {
 
         this.toml = new Toml().read(dataFile);
 
-        // ?????????????��???????
+        // 读取配置文件版本，判断是否与插件兼容
         long version = this.toml.getLong("config_version", 0L);
         if (version != CONFIG_VERSION) {
             throw new RuntimeException("ERROR: Can't use the existing configuration file: version mismatch (intended for another, older version?)");
@@ -75,7 +75,7 @@ public class Config {
     }
 
     public void loadConfigs() {
-        // ??????????
+        // 读取配置文件
         this.GLOBAL_CHAT_ENABLED = this.toml.getBoolean("chat.enable", true);
         this.GLOBAL_CHAT_TO_CONSOLE = this.toml.getBoolean("chat.log_to_console", true);
         this.GLOBAL_CHAT_PASSTHROUGH = this.toml.getBoolean("chat.passthrough", true);
@@ -86,9 +86,9 @@ public class Config {
         this.URLS_PATTERN = this.toml.getString("urls.pattern", "https?:\\/\\/\\S+");
 
         this.JOIN_ENABLE = this.toml.getBoolean("join.enable", false);
-        this.JOIN_FORMAT = this.toml.getString("join.format", "<yellow><player> Join</yellow>");
+        this.JOIN_FORMAT = this.toml.getString("join.format", "<yellow><player> 加入了游戏</yellow>");
 
         this.QUIT_ENABLE = this.toml.getBoolean("quit.enable", true);
-        this.QUIT_FORMAT = this.toml.getString("quit.format", "<yellow><player> Quit</yellow>");
+        this.QUIT_FORMAT = this.toml.getString("quit.format", "<yellow><player> 离开了游戏</yellow>");
     }
 }

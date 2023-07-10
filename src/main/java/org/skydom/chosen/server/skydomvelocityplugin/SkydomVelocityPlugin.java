@@ -14,7 +14,7 @@ import java.nio.file.Path;
 @com.velocitypowered.api.plugin.Plugin(
         id = "skydomvelocityplugin",
         name = "SkydomVelocityPlugin",
-        version = BuildConstants.VERSION,
+        version = BuildConstants.VERSION, // 读取 build.gradle 中设置的版本号
         authors = {"Chosen_1st"}
 )
 public class SkydomVelocityPlugin {
@@ -27,7 +27,7 @@ public class SkydomVelocityPlugin {
         this.server = server;
         this.logger = logger;
 
-        logger.info("Loading plugin...");
+        logger.info("加载插件中...");
         this.dataDirectory = dataDirectory;
     }
 
