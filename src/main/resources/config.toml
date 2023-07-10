@@ -16,7 +16,7 @@ passthrough = true
 parse_player_messages = true
 
 # global chat format, you can use minimessage tags here.
-format = "[<player>]: <message>"
+format = "<<player>>: <message>"
 
 [urls]
 # should urls typed in chat be clickable?

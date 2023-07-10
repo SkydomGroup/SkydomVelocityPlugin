@@ -80,7 +80,7 @@ public class Config {
         this.GLOBAL_CHAT_TO_CONSOLE = this.toml.getBoolean("chat.log_to_console", true);
         this.GLOBAL_CHAT_PASSTHROUGH = this.toml.getBoolean("chat.passthrough", true);
         this.GLOBAL_CHAT_ALLOW_MSG_FORMATTING = this.toml.getBoolean("chat.parse_player_messages", true);
-        this.GLOBAL_CHAT_FORMAT = this.toml.getString("chat.format", "[<player>]: <message>");
+        this.GLOBAL_CHAT_FORMAT = this.toml.getString("chat.format", "<<player>> <message>");
 
         this.URLS_CLICKABLE = this.toml.getBoolean("urls.clickable", true);
         this.URLS_PATTERN = this.toml.getString("urls.pattern", "https?:\\/\\/\\S+");

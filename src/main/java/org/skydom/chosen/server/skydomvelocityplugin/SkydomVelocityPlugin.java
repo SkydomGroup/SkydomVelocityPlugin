@@ -1,11 +1,13 @@
 package org.skydom.chosen.server.skydomvelocityplugin;
 
 import com.google.inject.Inject;
-import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.Subscribe;
+import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
-import org.skydom.chosen.server.skydomvelocityplugin.modules.GlobalChat;
+import org.skydom.chosen.server.skydomvelocityplugin.chat.GlobalChat;
+import org.skydom.chosen.server.skydomvelocityplugin.ping.GlobalPing;
+import org.skydom.chosen.server.skydomvelocityplugin.tab.GlobalTab;
 import org.slf4j.Logger;
 
 import java.nio.file.Path;
@@ -18,7 +20,7 @@ import java.nio.file.Path;
         authors = {"Chosen_1st"}
 )
 public class SkydomVelocityPlugin {
-    private final ProxyServer server;
+    public final ProxyServer server;
     private final Logger logger;
     private final Path dataDirectory;
 
@@ -34,7 +36,9 @@ public class SkydomVelocityPlugin {
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        this.register(new GlobalChat(this.server, this.logger, this.dataDirectory));
+        this.register(new GlobalChat(this.server, this.logger, this.dataDirectory)); // 启用消息同步
+        this.register(new GlobalPing(this.server)); // 启用Ping同步
+        this.register(new GlobalTab(this.server));
     }
 
     private void register(Object x) {

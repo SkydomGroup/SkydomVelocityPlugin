@@ -1,4 +1,4 @@
-package org.skydom.chosen.server.skydomvelocityplugin.modules;
+package org.skydom.chosen.server.skydomvelocityplugin.chat;
 
 import com.velocitypowered.api.event.PostOrder;
 import com.velocitypowered.api.event.Subscribe;
@@ -13,7 +13,6 @@ import com.velocitypowered.api.proxy.server.RegisteredServer;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.skydom.chosen.server.skydomvelocityplugin.Config;
 import org.slf4j.Logger;
