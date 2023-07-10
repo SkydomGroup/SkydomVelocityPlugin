@@ -6,7 +6,6 @@ import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import org.skydom.chosen.server.skydomvelocityplugin.chat.GlobalChat;
-import org.skydom.chosen.server.skydomvelocityplugin.chat.SendMessageOnPlayerJoin;
 import org.skydom.chosen.server.skydomvelocityplugin.command.ServerTeleporting;
 import org.skydom.chosen.server.skydomvelocityplugin.ping.GlobalPing;
 import org.slf4j.Logger;
@@ -28,10 +27,9 @@ public class SkydomVelocityPlugin {
 
     @Inject // 使用@Inject注解，表示这个构造方法需要依赖注入
     public SkydomVelocityPlugin(ProxyServer server, Logger logger, @DataDirectory Path dataDirectory) { // 定义一个公共的构造方法，参数是ProxyServer, Logger和Path
+        logger.info("加载插件中......"); // 使用logger对象的info方法，打印一条信息到控制台
         this.server = server; // 把参数赋值给常量
         this.logger = logger; // 把参数赋值给常量
-
-        logger.info("加载插件中......"); // 使用logger对象的info方法，打印一条信息到控制台
         this.dataDirectory = dataDirectory; // 把参数赋值给常量
     }
 
@@ -41,7 +39,6 @@ public class SkydomVelocityPlugin {
         this.register(new GlobalChat(this.server, this.logger, this.dataDirectory)); // 启用消息同步
         this.register(new GlobalPing(this.server,this.dataDirectory)); // 启用Ping同步
         server.getCommandManager().register("stp", new ServerTeleporting(this.server,this.dataDirectory)); // 启用跨服传送
-        this.register(new SendMessageOnPlayerJoin(this.server, this.logger)); // 注册子类为事件监听器
     }
 
     private void register(Object x) { // 定义一个私有的方法，参数是Object

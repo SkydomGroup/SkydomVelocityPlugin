@@ -1,6 +1,5 @@
 package org.skydom.chosen.server.skydomvelocityplugin.command;
 
-import com.velocitypowered.api.command.Command;
 import com.velocitypowered.api.command.CommandSource;
 import com.velocitypowered.api.command.SimpleCommand;
 import com.velocitypowered.api.event.Subscribe;
@@ -10,7 +9,6 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import com.velocitypowered.api.proxy.server.RegisteredServer;
 import net.kyori.adventure.text.Component;
 import org.skydom.chosen.server.skydomvelocityplugin.Config;
-import org.slf4j.Logger;
 
 import java.nio.file.Path;
 import java.util.Arrays;
@@ -41,12 +39,12 @@ public class ServerTeleporting implements SimpleCommand { // 定义一个类，�
         }
         CommandSource source = invocation.source(); // 获取执行指令的来源
         String[] args = invocation.arguments(); // 获取指令的参数
-        if (args.length != 1) { // 如果参数的长度不等于1
-            source.sendMessage(Component.text("使用方法： /stp <生存世界>或<资源世界>")); // 发送一条消息给来源，提示正确的用法
-            return; // 结束方法
-        }
         if (!(source instanceof Player)) { // 如果来源不是玩家
             source.sendMessage(Component.text("这个指令只有玩家可以使用哦！")); // 发送一条消息给来源
+            return; // 结束方法
+        }
+        if (args.length != 1) { // 如果参数的长度不等于1
+            source.sendMessage(Component.text("使用方法： /stp <生存世界>或<资源世界>")); // 发送一条消息给来源，提示正确的用法
             return; // 结束方法
         }
         String name = args[0]; // 获取第一个参数，也就是服务器的名称
@@ -54,11 +52,15 @@ public class ServerTeleporting implements SimpleCommand { // 定义一个类，�
         if (targetServer.isPresent()) { // 如果服务器对象不为空
             Player player = (Player) source; // 把来源转换为玩家对象
             if (player.getCurrentServer().get().getServer().equals(targetServer.get())) { // 如果玩家已经在目标服务器上
-                source.sendMessage(Component.text("你已经在" + name + "了。")); // 发送一条消息给来源，告诉他不需要传送
+                source.sendMessage(Component.text("你已经在这个世界了。")); // 发送一条消息给来源，告诉他不需要传送
                 return; // 结束方法
             }
             player.createConnectionRequest(targetServer.get()).fireAndForget(); // 创建一个连接请求，让来源玩家连接到目标服务器
-            source.sendMessage(Component.text("正在传送到" + name + "......")); // 发送一条消息给来源，告诉他正在传送
+            if (name.equals("1")){
+                source.sendMessage(Component.text("正在传送到生存世界......")); // 发送一条消息给来源，告诉他正在传送
+            }else if (name.equals("2")){
+                source.sendMessage(Component.text("正在传送到资源世界......")); // 发送一条消息给来源，告诉他正在传送
+            }
         } else {
             if (!name.equals("help")) { // 如果你想获取帮助
                 source.sendMessage(Component.text("输入 '/stp 1' 传送到生存世界"));
@@ -78,6 +80,6 @@ public class ServerTeleporting implements SimpleCommand { // 定义一个类，�
     }
 
     public String[] getAliases() { // 实现SimpleCommand接口的getAliases方法，返回一个字符串数组，表示指令的别名
-        return new String[]{"servertp"};
+        return new String[]{"serverteleporting"};
     }
 }

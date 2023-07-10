@@ -17,7 +17,6 @@ public class GlobalPing { // 定义一个类，用来显示全局的玩家列表
     private final ProxyServer server; // 定义一个私有的常量，类型是ProxyServer
     private final Path dataDirectory;
     private Config config; // 导入配置文件设置
-
     public GlobalPing(ProxyServer server,Path dataDirectory) { // 定义一个公共的构造方法，参数是ProxyServer
         this.server = server; // 把参数赋值给常量
         this.dataDirectory = dataDirectory; // 给属性dataDirectory赋值，表示数据目录
