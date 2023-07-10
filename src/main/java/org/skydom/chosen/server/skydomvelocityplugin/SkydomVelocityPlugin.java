@@ -1,11 +1,13 @@
 package org.skydom.chosen.server.skydomvelocityplugin;
 
 import com.google.inject.Inject;
+import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import org.skydom.chosen.server.skydomvelocityplugin.chat.GlobalChat;
+import org.skydom.chosen.server.skydomvelocityplugin.chat.SendMessageOnPlayerJoin;
 import org.skydom.chosen.server.skydomvelocityplugin.command.ServerTeleporting;
 import org.skydom.chosen.server.skydomvelocityplugin.ping.GlobalPing;
 import org.slf4j.Logger;
@@ -44,6 +46,7 @@ public class SkydomVelocityPlugin {
         if (config.STP) {
             server.getCommandManager().register("stp", new ServerTeleporting(server)); // 启用跨服传送
         }
+        this.register(new SendMessageOnPlayerJoin(this.server, this.logger)); // 注册子类为事件监听器
     }
 
     private void register(Object x) { // 定义一个私有的方法，参数是Object
