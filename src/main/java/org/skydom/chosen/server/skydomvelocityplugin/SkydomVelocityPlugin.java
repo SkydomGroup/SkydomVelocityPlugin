@@ -29,16 +29,15 @@ public class SkydomVelocityPlugin {
         this.server = server;
         this.logger = logger;
 
-        logger.info("加载插件中...");
+        logger.info("加载插件中......");
         this.dataDirectory = dataDirectory;
-        logger.info("插件加载完毕！");
     }
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         this.register(new GlobalChat(this.server, this.logger, this.dataDirectory)); // 启用消息同步
         this.register(new GlobalPing(this.server)); // 启用Ping同步
-        this.register(new GlobalTab(this.server));
+        this.register(new GlobalTab(this.server)); // 启用全局玩家列表
     }
 
     private void register(Object x) {
