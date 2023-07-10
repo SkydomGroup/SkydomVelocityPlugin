@@ -1,36 +1,44 @@
 config_version = 1
 
 [chat]
-# enable global chat?
+# 是否启用全局聊天？
 enable = true
 
-# should the chat messages be echoed to velocity's console?
+# 是否把聊天信息输出到velocity的控制台？
 log_to_console = true
 
-# should chat messages be passed through to the minecraft server?
-# if enabled, it will show duplicate messages in the senders chat
+# 是否把聊天信息传递给minecraft服务器？
+# 如果启用，发送者的聊天框会显示重复的信息。
 passthrough = true
 
-# should chat messages be parsed through minimessage?
-# player will be able to use styles such as <rainbow>hello</rainbow> in their messages
+# 是否把聊天信息解析为minimessage？
+# 玩家可以在信息中使用样式，比如 <rainbow>hello</rainbow>。
 parse_player_messages = true
 
-# global chat format, you can use minimessage tags here.
+# 全局聊天格式，你可以在这里使用minimessage标签。
 format = "<<player>>: <message>"
 
 [urls]
-# should urls typed in chat be clickable?
+# 是否让聊天中输入的网址可以点击？
 clickable = true
-# the regular expression used to determine whether something is a url
-# test using https://regex101.com/ set to Java 8 and only the "g" (global) flag
+# 用来判断是否是网址的正则表达式。
+# 可以使用 https://regex101.com/ 测试，选择Java 8并且只勾选"g"（全局）标志。
 pattern = "https?:\\/\\/\\S+"
 
 [join]
-# send a chat message when a player connects to velocity? Useful for fabric servers which dont already have a Join message.
+# 当玩家连接到velocity时，是否发送一条聊天信息？对于没有加入信息的fabric服务器很有用。
 enable = false
 format = "<yellow><player> 加入了游戏</yellow>"
 
 [quit]
-# send a chat message when a player disconnects?
+# 当玩家断开连接时，是否发送一条聊天信息？
 enable = true
 format = "<yellow><player> 离开了游戏</yellow>"
+
+[ping]
+# 在服务器列表检测服务器延迟时，是否显示所有连接到Velocity的玩家？
+enable = true
+
+[stp]
+# 是否启用 /stp 命令？
+enable = true
