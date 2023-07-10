@@ -33,20 +33,24 @@ public class ServerTeleporting implements Command { // 定义一个类，实现C
         }
         String name = args[0]; // 获取第一个参数，也就是服务器的名称
         Optional<RegisteredServer> targetServer = server.getServer(name); // 根据名称获取服务器对象，可能为空
-        if (targetServer.isPresent()) { //如果服务器对象不为空
+        if (targetServer.isPresent()) { // 如果服务器对象不为空
             ((Player) source).createConnectionRequest(targetServer.get()).fireAndForget(); // 创建一个连接请求，让来源玩家连接到目标服务器
             source.sendMessage(Component.text("正在传送到" + name + "......")); // 发送一条消息给来源，告诉他正在传送
-        } else { //如果服务器对象为空
-            source.sendMessage(Component.text(name + "服务器没有找到。")); // 发送一条消息给来源，告诉他服务器不存在
+        } else {
+        if (!name.equals("help")) { // 如果你想获取帮助
+            source.sendMessage(Component.text("输入 '/stp 1' 传送到生存世界"));
+            source.sendMessage(Component.text("输入 '/stp 2' 传送到资源世界"));
+            return; // 结束方法
+        }
+        source.sendMessage(Component.text(name + "服务器没有找到。")); // 发送一条消息给来源，告诉他服务器不存在
         }
     }
 
     public List<String> suggest(SimpleCommand.Invocation invocation) {
         if (invocation.arguments().length == 0) { // 如果参数的长度等于0，也就是没有输入任何参数
-            return Arrays.asList("待定1", "待定2"); // 返回一个列表，包含两个建议的服务器名称
+            return Arrays.asList("1", "2"); // 返回一个列表，包含两个建议的服务器名称
         } else { // 如果参数的长度不等于0，也就是已经输入了一些参数
             return Collections.emptyList(); // 返回一个空列表，表示没有任何建议
         }
     }
-
 }

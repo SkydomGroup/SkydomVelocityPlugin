@@ -30,4 +30,3 @@ public class GlobalPing { // 定义一个类，用来显示全局的玩家列表
         event.setPing(newPing); // 把事件中的服务器信息对象替换为新的对象
     }
 }
-

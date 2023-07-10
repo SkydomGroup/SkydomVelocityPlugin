@@ -161,5 +161,4 @@ public class GlobalChat {
             this.parse = shouldParse; // 给属性parse赋值
         }
     }
-
 }
