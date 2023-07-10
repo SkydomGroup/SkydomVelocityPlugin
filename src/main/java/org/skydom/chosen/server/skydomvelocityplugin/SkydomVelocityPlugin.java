@@ -7,7 +7,6 @@ import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.ProxyServer;
 import org.skydom.chosen.server.skydomvelocityplugin.chat.GlobalChat;
 import org.skydom.chosen.server.skydomvelocityplugin.ping.GlobalPing;
-import org.skydom.chosen.server.skydomvelocityplugin.tab.GlobalTab;
 import org.slf4j.Logger;
 
 import java.nio.file.Path;
@@ -37,7 +36,6 @@ public class SkydomVelocityPlugin {
     public void onProxyInitialization(ProxyInitializeEvent event) {
         this.register(new GlobalChat(this.server, this.logger, this.dataDirectory)); // 启用消息同步
         this.register(new GlobalPing(this.server)); // 启用Ping同步
-        this.register(new GlobalTab(this.server)); // 启用全局玩家列表
     }
 
     private void register(Object x) {
