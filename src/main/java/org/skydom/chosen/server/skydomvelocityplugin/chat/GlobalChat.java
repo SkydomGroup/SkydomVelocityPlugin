@@ -32,7 +32,6 @@ public class GlobalChat {
         this.server = server; // 给属性server赋值，表示代理服务器
         this.logger = logger; // 给属性logger赋值，表示日志记录器
         this.dataDirectory = dataDirectory; // 给属性dataDirectory赋值，表示数据目录
-
         this.config = new Config(dataDirectory); // 调用Config类的构造方法，传入数据目录参数，创建一个配置文件的实例，并给属性config赋值
     }
 

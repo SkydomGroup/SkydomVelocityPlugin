@@ -1,7 +1,6 @@
 package org.skydom.chosen.server.skydomvelocityplugin;
 
 import com.google.inject.Inject;
-import com.velocitypowered.api.event.EventManager;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
@@ -40,12 +39,8 @@ public class SkydomVelocityPlugin {
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         this.register(new GlobalChat(this.server, this.logger, this.dataDirectory)); // 启用消息同步
-        if (config.GLOBAL_PING) {
-            this.register(new GlobalPing(this.server)); // 启用Ping同步
-        }
-        if (config.STP) {
-            server.getCommandManager().register("stp", new ServerTeleporting(server)); // 启用跨服传送
-        }
+        this.register(new GlobalPing(this.server,this.dataDirectory)); // 启用Ping同步
+        server.getCommandManager().register("stp", new ServerTeleporting(this.server,this.dataDirectory)); // 启用跨服传送
         this.register(new SendMessageOnPlayerJoin(this.server, this.logger)); // 注册子类为事件监听器
     }
 
